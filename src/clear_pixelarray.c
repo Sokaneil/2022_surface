@@ -7,18 +7,21 @@
  */
 
 #include <lapin.h> // For all bunny_ things
-#include <unistd.h> // For usleep
-#include <stdlib.h> // For EXIT_SUCCESS
+#include "surface.h"
 
-void clear_pixelarray(t_bunny_pixelarray *pxa,
+void clear_pixelarray(struct structure *stats,
                       unsigned int color)
 {
-    int width = pxa->clipable.clip_width;
-    int height = pxa->clipable.clip_height;
-    int total = width * height;
-    unsigned int *tmp = (unsigned int *)pxa -> pixels;
+    int width;
+    int height;
+    int total;
+    unsigned int *tmp;
     int i;
 
+    width= stats->px->clipable.clip_height;
+    height= stats->px->clipable.clip_width;
+    total = width *height;
+    tmp =  (unsigned int *)stats->px -> pixels;
     i = 0;
     while (i <= total) {
         tmp [i] = color;

@@ -13,10 +13,9 @@ SRCS	=	src/main.c		\
 		src/get_value.c		\
 		src/mk_colour.c		\
 		src/clear_pixelarray.c	\
-		src/project_paralell.c	\
-		src/draw_paralell.c	\
+		src/project_paralell.c  \
 		src/project_isometric.c	\
-		src/draw_isometric.c	\
+		src/draw_grid.c		\
 		src/terrain.c		\
 		src/relief.c
 

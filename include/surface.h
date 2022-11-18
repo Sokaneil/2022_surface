@@ -7,6 +7,7 @@
  */
 #ifndef SURFACE_H_
 #define SURFACE_H_
+#include "struct.h"
 
 float get_ratio(int a, int b, int x);
 int get_value(int a, int b, float ratio);
@@ -21,13 +22,12 @@ unsigned int mk_colour(unsigned char r,
                        unsigned char g,
                        unsigned char b,
                        unsigned char a);
-void clear_pixelarray(t_bunny_pixelarray *pxa,
+void clear_pixelarray(struct structure *stats,
                       unsigned int color);
-t_bunny_position project_paralell(int x, int y, int z);
-void stu_draw_paralell(int x, int y, int z, t_bunny_pixelarray *px);
-t_bunny_position project_isometric(int x, int y, int z);
-void stu_draw_isometric(int x, int y,int z, t_bunny_pixelarray *px);
-void terrain(t_bunny_pixelarray *px, int x, int y, const int *z);
-void relief(t_bunny_pixelarray *px, int x, int y, const int *z);
+t_bunny_position project_paralell(int x, int y, int z, int coef);
+t_bunny_position project_isometric(int x, int y, int z, int coef);
+void draw_grid(int x, int y, int z, struct structure *stats);
+void terrain(struct structure *stats, int x, int y, const int *z);
+void relief(struct structure *stats, int x, int y, const int *z);
 
 #endif /*SURFACE_H_*/

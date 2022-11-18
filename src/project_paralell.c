@@ -7,16 +7,15 @@
  */
 
 #include <lapin.h>
+#include "surface.h"
 
-t_bunny_position project_paralell(int x, int y, int z)
+t_bunny_position project_paralell(int x, int y, int z, int coef)
 {
     t_bunny_position P;
     float i;
-    int coef;
 
     i = 0.5;
-    coef = 75;
-    P.x = (x - i*y)*coef + 300;
-    P.y = -z + (i*y)*coef + 400;
+    P.x = (x - i*y) * coef;
+    P.y = -z + (i*y) * coef;
     return (P);
 }

@@ -10,6 +10,7 @@
 #include <stdlib.h> // For EXIT_SUCCESS
 #include "surface.h"
 
+//Change the Elevations of the terrain
 const int z[] = {200, 30, 60, 90, 160,
                  50, -10, 20, 80, 70,
                  100, 20, -20, 20, 50,
@@ -20,12 +21,13 @@ int main(void)
     t_bunny_window *win;
     t_bunny_position origin;
     struct structure stats;
-
+    //Configuration of the Projection
+    stats.square = 5;
     stats.width = 960;
     stats.height = 1080;
     stats.origin_x = stats.width / 2;
     stats.origin_y = stats.height / 3;
-    stats.coef = stats.height / 12;
+    stats.coef = 75;
     stats.projection = 0;
     win = bunny_start(stats.width, stats.height, false,
                       "fl: Main Window");
@@ -33,14 +35,12 @@ int main(void)
     origin.x = 0;
     origin.y = 0;
     clear_pixelarray(&stats, BLACK);
-    draw_grid(5, 5, 0, &stats);
-    relief(&stats, 5, 5, z);
-    terrain(&stats, 5, 5, z);
+    draw_grid(stats.square, stats.square, 0, &stats);
+    relief(&stats, stats.square, stats.square, z);
+    terrain(&stats, stats.square, stats.square, z);
     bunny_blit(&win->buffer, &stats.px->clipable, &origin);
     bunny_display(win);
-    //while (true) {
     usleep(1e7);
-        //}
     bunny_stop(win);
     return (EXIT_SUCCESS);
 }

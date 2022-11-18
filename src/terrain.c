@@ -1,8 +1,7 @@
-#include "struct.h"
 #include <lapin.h>
 #include "surface.h"
 
-static void terrain_isometric_Y(t_bunny_pixelarray *px,
+static void terrain_isometric_Y(struct structure *stats,
                                 int x, int y, const int *z)
 {
     int foo;
@@ -16,9 +15,9 @@ static void terrain_isometric_Y(t_bunny_pixelarray *px,
     foo = 0;
     while(j <= y - 1) {
         while(i < x - 1) {
-            P_x = project_isometric(i, j, z[foo]);
-            P_y = project_isometric((i + 1), j, z[foo + 1]);
-            stu_draw_line(px, &P_x, &P_y, GREEN);
+            P_x = project_isometric(i, j, z[foo], stats->coef);
+            P_y = project_isometric((i + 1), j, z[foo + 1], stats->coef);
+            stu_draw_line(stats->px, &P_x, &P_y, GREEN);
             i += 1;
             foo += 1;
         }
@@ -30,7 +29,7 @@ static void terrain_isometric_Y(t_bunny_pixelarray *px,
     j = 0;
     foo = 0;
 }
-static void terrain_isometric_X(t_bunny_pixelarray *px,
+static void terrain_isometric_X(struct structure *stats,
                                 int x, int y, const int *z)
 {
     int foo;
@@ -44,9 +43,9 @@ static void terrain_isometric_X(t_bunny_pixelarray *px,
     foo = 0;
     while(j < y - 1) {
         while(i <= x - 1) {
-            P_x = project_isometric(i, j, z[foo]);
-            P_y = project_isometric(i,(j + 1), z[foo + x]);
-            stu_draw_line(px, &P_x, &P_y, GREEN);
+            P_x = project_isometric(i, j, z[foo], stats->coef);
+            P_y = project_isometric(i,(j + 1), z[foo + x], stats->coef);
+            stu_draw_line(stats->px, &P_x, &P_y, GREEN);
             i += 1;
             foo += 1;
         }
@@ -54,7 +53,7 @@ static void terrain_isometric_X(t_bunny_pixelarray *px,
         i = 0;
     }
 }
-static void terrain_paralell_Y(t_bunny_pixelarray *px,
+static void terrain_paralell_Y(struct structure *stats,
                                 int x, int y, const int *z)
 {
     int foo;
@@ -68,9 +67,9 @@ static void terrain_paralell_Y(t_bunny_pixelarray *px,
     foo = 0;
     while(j <= y - 1) {
         while(i < x - 1) {
-            P_x = project_paralell(i, j, z[foo]);
-            P_y = project_paralell((i + 1), j, z[foo + 1]);
-            stu_draw_line(px, &P_x, &P_y, GREEN);
+            P_x = project_paralell(i, j, z[foo], stats->coef);
+            P_y = project_paralell((i + 1), j, z[foo + 1], stats->coef);
+            stu_draw_line(stats->px, &P_x, &P_y, GREEN);
             i += 1;
             foo += 1;
         }
@@ -82,7 +81,7 @@ static void terrain_paralell_Y(t_bunny_pixelarray *px,
     j = 0;
     foo = 0;
 }
-static void terrain_paralell_X(t_bunny_pixelarray *px,
+static void terrain_paralell_X(struct structure *stats,
                                 int x, int y, const int *z)
 {
     int foo;
@@ -96,9 +95,9 @@ static void terrain_paralell_X(t_bunny_pixelarray *px,
     foo = 0;
     while(j < y - 1) {
         while(i <= x - 1) {
-            P_x = project_paralell(i, j, z[foo]);
-            P_y = project_paralell(i,(j + 1), z[foo + x]);
-            stu_draw_line(px, &P_x, &P_y, GREEN);
+            P_x = project_paralell(i, j, z[foo], stats->coef);
+            P_y = project_paralell(i,(j + 1), z[foo + x], stats->coef);
+            stu_draw_line(stats->px, &P_x, &P_y, GREEN);
             i += 1;
             foo += 1;
         }
@@ -106,10 +105,13 @@ static void terrain_paralell_X(t_bunny_pixelarray *px,
         i = 0;
     }
 }
-void terrain(t_bunny_pixelarray *px, int x, int y, const int *z)
+void terrain(struct structure *stats, int x, int y, const int *z)
 {
-    terrain_isometric_X(px, x, y, z);
-    terrain_isometric_Y(px, x, y, z);
-    terrain_paralell_X(px, x, y, z);
-    terrain_paralell_Y(px, x, y, z);
+    if (stats->projection == 0) {
+    terrain_isometric_X(stats, x, y, z);
+    terrain_isometric_Y(stats, x, y, z);
+    } else if (stats->projection == 1) {
+    terrain_paralell_X(stats, x, y, z);
+    terrain_paralell_Y(stats, x, y, z);
+    }
 }
