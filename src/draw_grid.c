@@ -1,3 +1,11 @@
+/*
+ * E89 Pedagogical & Technical Lab
+ * project:     surface
+ * created on:  2022-11-21 - 16:42 +0100
+ * 1st author:  sokaneil.sieng - sokaneil.sieng
+ * description: drawing the grid
+ */
+
 #include <lapin.h>
 #include "surface.h"
 

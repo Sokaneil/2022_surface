@@ -1,3 +1,11 @@
+/*
+ * E89 Pedagogical & Technical Lab
+ * project:     surface
+ * created on:  2022-11-21 - 16:43 +0100
+ * 1st author:  sokaneil.sieng - sokaneil.sieng
+ * description: draw the terrain
+ */
+
 #include <lapin.h>
 #include "surface.h"
 
