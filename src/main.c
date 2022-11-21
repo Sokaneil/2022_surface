@@ -20,13 +20,13 @@ const int z[] = {200, 30, 60, 90, 160, 200, 100,
 static void configuration(struct structure *stats)
 {
     stats->coordsup = 7;
-    stats->coordsdown = 7;
+    stats->coordsdown = 4;
     stats->width = 1920;
     stats->height = 1080;
     stats->origin_x = 700;
     stats->origin_y = 500;
     stats->coef = 150;
-    stats->projection = 0;
+    stats->projection = 0; //1 for Paralell, 0 for Isometric
 }
 int main(void)
 {
