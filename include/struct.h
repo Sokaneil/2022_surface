@@ -8,7 +8,8 @@ struct structure {
     int projection;
     int width;
     int height;
-    int square;
+    int coordsup;
+    int coordsdown;
     int coef;
 };
 

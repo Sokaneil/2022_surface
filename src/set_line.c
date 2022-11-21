@@ -5,9 +5,7 @@
  * 1st author:  sokaneil.sieng - sokaneil.sieng
  * description: tracer une ligne
  */
-#include <lapin.h> // For all bunny_ things
-#include <unistd.h> // For usleep
-#include <stdlib.h> // For EXIT_SUCCESS
+#include <lapin.h>
 #include "surface.h"
 
 void stu_draw_line(t_bunny_pixelarray *px,
@@ -38,7 +36,6 @@ void stu_draw_line(t_bunny_pixelarray *px,
             pos.x = x;
             pos.y = get_value(pos_a->y, pos_b->y,
                               get_ratio(pos_a->x, pos_b->x, x));
-            //printf("pos.x = %d, pos.y = %d\n", pos.x, pos.y);
             stu_set_pixel(px, &pos, color);
             x = x + 1;
         }
@@ -48,7 +45,6 @@ void stu_draw_line(t_bunny_pixelarray *px,
             pos.x = get_value(pos_a->x, pos_b->x,
                               get_ratio(pos_a->y, pos_b->y, y));
             stu_set_pixel(px, &pos, color);
-            //printf("%d\n", pos.y);
             y = y + 1;
         }
     }

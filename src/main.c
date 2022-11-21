@@ -10,37 +10,40 @@
 #include <stdlib.h> // For EXIT_SUCCESS
 #include "surface.h"
 
-const int z[] = {200, 30, 60, 90, 160,
-                 50, -10, 20, 80, 70,
-                 100, 20, -20, 20, 50,
-                 170, 70, 20, -10, 35,
-                 80, 60, 35, 20, 0};
+const int z[] = {200, 30, 60, 90, 160, 200,
+                 50, -10, 20, 80, 70, 140,
+                 100, 20, -20, 20, 50, 120,
+                 170, 70, 20, -10, 35, 40,
+                 80, 60, 35, 20, 0, 50,
+                 100, 25, 40, 60, 70, 0};
 int main(void)
 {
     t_bunny_window *win;
     t_bunny_position origin;
+    int coordsup;
+    int coordsdown;
     struct structure stats;
 
-    stats.width = 960;
+    coordsup = 6;
+    coordsdown = 6;
+    stats.width = 1920;
     stats.height = 1080;
-    stats.origin_x = stats.width / 2;
-    stats.origin_y = stats.height / 3;
-    stats.coef = stats.height / 12;
-    stats.projection = 0;
+    stats.origin_x = 700;
+    stats.origin_y = 500;
+    stats.coef = 100;
+    stats.projection = 1;
     win = bunny_start(stats.width, stats.height, false,
                       "fl: Main Window");
     stats.px = bunny_new_pixelarray(stats.width, stats.height);
     origin.x = 0;
     origin.y = 0;
     clear_pixelarray(&stats, BLACK);
-    draw_grid(5, 5, 0, &stats);
-    relief(&stats, 5, 5, z);
-    terrain(&stats, 5, 5, z);
+    draw_grid(coordsup, coordsdown, 0, &stats);
+    relief(&stats, coordsup, coordsdown, z);
+    terrain(&stats, coordsup, coordsdown, z);
     bunny_blit(&win->buffer, &stats.px->clipable, &origin);
     bunny_display(win);
-    //while (true) {
     usleep(1e7);
-        //}
     bunny_stop(win);
     return (EXIT_SUCCESS);
 }

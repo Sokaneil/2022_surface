@@ -5,37 +5,44 @@ static void stu_draw_isometric_Y(int x, int y,int z, struct structure *stats)
 {
     int i;
     int j;
-    t_bunny_position P_x;
-    t_bunny_position P_y;
+    t_bunny_position P_A;
+    t_bunny_position P_B;
 
     i = 0;
     j = 0;
     while(i <= x - 1) {
         while(j < y - 1) {
-            P_x = project_isometric(i, j, z, stats->coef);
-            P_y = project_isometric(i, (j + 1), z, stats->coef);
-            stu_draw_line(stats->px, &P_x, &P_y, WHITE);
+            P_A = project_isometric(i, j, z, stats->coef);
+            P_A.x += stats->origin_x;
+            P_A.y += stats->origin_y;
+            P_B = project_isometric(i, (j + 1), z, stats->coef);
+            P_B.x += stats->origin_x;
+            P_B.y += stats->origin_y;
+            stu_draw_line(stats->px, &P_A, &P_B, WHITE);
             j += 1;
         }
         j = 0;
         i += 1;
     }
-    i = 0;
 }
 static void stu_draw_isometric_X(int x, int y,int z, struct structure *stats)
 {
     int i;
     int j;
-    t_bunny_position P_x;
-    t_bunny_position P_y;
+    t_bunny_position P_A;
+    t_bunny_position P_B;
 
     i = 0;
     j = 0;
     while(j <= y - 1) {
         while(i < x - 1) {
-            P_x = project_isometric(i, j, z, stats->coef);
-            P_y = project_isometric((i + 1), j, z, stats->coef);
-            stu_draw_line(stats->px, &P_x, &P_y, WHITE);
+            P_A = project_isometric(i, j, z, stats->coef);
+            P_A.x += stats->origin_x;
+            P_A.y += stats->origin_y;
+            P_B = project_isometric((i + 1), j, z, stats->coef);
+            P_B.x += stats->origin_x;
+            P_B.y += stats->origin_y;
+            stu_draw_line(stats->px, &P_A, &P_B, WHITE);
             i += 1;
         }
         i = 0;
@@ -46,38 +53,45 @@ static void stu_draw_paralell_Y(int x, int y, int z, struct structure *stats)
 {
     int i;
     int j;
-    t_bunny_position P_x;
-    t_bunny_position P_y;
+    t_bunny_position P_A;
+    t_bunny_position P_B;
 
     i = 0;
     j = 0;
     while(i <= x - 1) {
         while(j < y - 1) {
-            P_x = project_paralell(i, j, z, stats->coef);
-            P_y = project_paralell(i, (j + 1), z, stats->coef);
-            stu_draw_line(stats->px, &P_x, &P_y, WHITE);
+            P_A = project_paralell(i, j, z, stats->coef);
+            P_A.x += stats->origin_x;
+            P_A.y += stats->origin_y;
+            P_B = project_paralell(i, (j + 1), z, stats->coef);
+            P_B.x += stats->origin_x;
+            P_B.y += stats->origin_y;
+            stu_draw_line(stats->px, &P_A, &P_B, WHITE);
             j += 1;
         }
         j = 0;
         i += 1;
     }
-    i = 0;
 }
 
 static void stu_draw_paralell_X(int x, int y, int z, struct structure *stats)
 {
     int i;
     int j;
-    t_bunny_position P_x;
-    t_bunny_position P_y;
+    t_bunny_position P_A;
+    t_bunny_position P_B;
 
     i = 0;
     j = 0;
     while(j <= y - 1) {
         while(i < x - 1) {
-            P_x = project_paralell(i, j, z, stats->coef);
-            P_y = project_paralell((i + 1), j, z, stats->coef);
-            stu_draw_line(stats->px, &P_x, &P_y, WHITE);
+            P_A = project_paralell(i, j, z, stats->coef);
+            P_A.x += stats->origin_x;
+            P_A.y += stats->origin_y;
+            P_B = project_paralell((i + 1), j, z, stats->coef);
+            P_B.x += stats->origin_x;
+            P_B.y += stats->origin_y;
+            stu_draw_line(stats->px, &P_A, &P_B, WHITE);
             i += 1;
         }
         i = 0;
