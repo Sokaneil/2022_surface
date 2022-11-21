@@ -10,26 +10,31 @@
 #include <stdlib.h> // For EXIT_SUCCESS
 #include "surface.h"
 
-const int z[] = {200, 30, 60, 90, 160, 200,
-                 50, -10, 20, 80, 70, 140,
-                 100, 20, -20, 20, 50, 120,
-                 170, 70, 20, -10, 35, 40,
-                 80, 60, 35, 20, 0, 50,
-                 100, 25, 40, 60, 70, 0};
+const int z[] = {200, 30, 60, 90, 160, 200, 100,
+                 50, -10, 20, 80, 70, 140, 50,
+                 100, 20, -20, 20, 50, 120, 40,
+                 170, 70, 20, -10, 35, 40, 80,
+                 80, 60, 35, 20, 0, 50, 0,
+                 100, 25, 40, 60, 70, 0, 100,
+                 10, 50, 70, 85, 100, 0, 10};
+static void configuration(struct structure *stats)
+{
+    stats->coordsup = 7;
+    stats->coordsdown = 7;
+    stats->width = 1920;
+    stats->height = 1080;
+    stats->origin_x = 700;
+    stats->origin_y = 500;
+    stats->coef = 150;
+    stats->projection = 0;
+}
 int main(void)
 {
     t_bunny_window *win;
     t_bunny_position origin;
     struct structure stats;
-    //Configuration of the Projection
-    stats.coordsup = 6;
-    stats.coordsdown = 5;
-    stats.width = 1920;
-    stats.height = 1080;
-    stats.origin_x = 700;
-    stats.origin_y = 500;
-    stats.coef = 100;
-    stats.projection = 1;
+
+    configuration(&stats);
     win = bunny_start(stats.width, stats.height, false,
                       "fl: Main Window");
     stats.px = bunny_new_pixelarray(stats.width, stats.height);
