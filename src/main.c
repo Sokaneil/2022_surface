@@ -23,7 +23,7 @@ int main(void)
     struct structure stats;
     //Configuration of the Projection
     stats.coordsup = 6;
-    stats.coordsdown = 6;
+    stats.coordsdown = 5;
     stats.width = 1920;
     stats.height = 1080;
     stats.origin_x = 700;
@@ -36,9 +36,9 @@ int main(void)
     origin.x = 0;
     origin.y = 0;
     clear_pixelarray(&stats, BLACK);
-    draw_grid(stats.coordsup, stats.coordsdown, 0, &stats);
-    relief(&stats, stats.coordsup, stats.coordsdown, z);
-    terrain(&stats, stats.coordsup, stats.coordsdown, z);
+    draw_grid(stats.coordsdown, stats.coordsup, 0, &stats);
+    relief(&stats, stats.coordsdown, stats.coordsup, z);
+    terrain(&stats, stats.coordsdown, stats.coordsup, z);
     bunny_blit(&win->buffer, &stats.px->clipable, &origin);
     bunny_display(win);
     usleep(1e7);
